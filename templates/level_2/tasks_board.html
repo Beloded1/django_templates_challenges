@@ -1,35 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <title>Tasks</title>
+    <title>Transactions</title>
     <style>
-      article.card {
-        margin-bottom: 20px;
-        margin-top: 20px;
-      }
+        article.card {
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        /* Добавлен стиль для выделения красным цветом потенциально мошеннических транзакций */
+        article.card.potential-fraud {
+            color: red;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <main class="container">
-      <div class="grid">
-        <div>
-          <h4>К выполнению</h4>
-          <article class="card">Задача 1</article>
-          <article class="card">Задача 2</article>
-          <article class="card">Задача 3</article>
+        <div class="grid">
+            <div>
+                <h4>Список транзакций</h4>
+                {% for transaction in transactions %}
+                    <article class="card {% if transaction.potential_fraud %}potential-fraud{% endif %}">
+                        {{ transaction.description }}
+                    </article>
+                {% endfor %}
+            </div>
         </div>
-        <div>
-          <h4>В процессе</h4>
-          <article class="card">Задача 4</article>
-        </div>
-        <div>
-          <h4>Выполнено</h4>
-          <article class="card">Задача 5</article>
-        </div>
-      </div>
     </main>
-  </body>
+</body>
 </html>
